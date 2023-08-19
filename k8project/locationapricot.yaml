@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apricot
+  namespace: banana
+spec:
+  containers:
+    - name: apricot-container
+      image: nginx 
+

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enter-sandman
+  namespace: metallica
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enter-sandman
+  template:
+    metadata:
+      labels:
+        app: enter-sandman
+    spec:
+      containers:
+      - name: web-server
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: metal-cm-volume
+          mountPath: /var/www/index.html
+          subPath: metal.html
+      volumes:
+      - name: metal-cm-volume
+        configMap:
+          name: metal-cm
+
